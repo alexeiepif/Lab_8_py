@@ -5,6 +5,7 @@
 # В случае отрицательного ответа определить номер первого элемента,
 # нарушающего такую упорядоченность.
 
+from math import inf
 import sys
 
 
@@ -16,11 +17,13 @@ if __name__ == '__main__':
         exit(1)
     bool = False
     i = 0
-    while (not bool) and i < len(A)-1:
-        if A[i] > A[i+1]:
-            intruder_count = i+1
+    temp = -inf
+    for a in A:
+        if a < temp:
+            intruder_count = A.index(temp)+A.count(temp)
             bool = True
-        i += 1
+            break
+        temp = a
     if bool:
         print("Элемент, нарушающий упорядоченность по возрастанию имеет индекс = ", intruder_count)
     else:
